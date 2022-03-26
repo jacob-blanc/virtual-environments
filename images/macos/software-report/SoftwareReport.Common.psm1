@@ -266,8 +266,8 @@ function Get-CurlVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = Run-Command "git --version" | Take-Part -Part 2
-    return "Git: $gitVersion"
+    $gitVersion = Run-Command "git --version" | Take-Part -Part -1
+    return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
@@ -540,6 +540,11 @@ function Get-LibXextVersion {
 function Get-TclTkVersion {
     $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part 2
     return "Tcl/Tk $tcltkVersion"
+}
+
+function Get-YqVersion {
+    $yqVersion = Run-Command "yq --version"
+    return "$yqVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {
